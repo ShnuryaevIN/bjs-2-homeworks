@@ -17,16 +17,11 @@ solveEquation(10, 5, 5);
 
 
 
-
-
-
-
-
-
-
-
-
-
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+	let P = percent / 100 / 12;
+	let credit = amount - contribution;
+	let monthlyPayment =  credit * (P + (P / (((1 + P)**countMonths) - 1)));
+	let Sum = countMonths * monthlyPayment;
   
-}
+	return + Sum.toFixed(2);
+  }
