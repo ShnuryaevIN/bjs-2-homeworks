@@ -78,7 +78,7 @@ function averageEvenElementsWorker(...arr) {
 		}
 	}
 
-	if  ( !Array.isArray(arr) || !arr.length) {
+	if  (!Array.isArray(arr) || !arr.length) {
 		return 0;
 	} else {
 		return sumEvenElement / countEvenElement;
@@ -98,6 +98,32 @@ console.log(differenceEvenOddWorker(15, 97, 85, 64, 67, 10, 69, 40, 15, 35));
 console.log(averageEvenElementsWorker(1, 2, 3, 4, 5, 6, 7, 8, 9)); 
 console.log(averageEvenElementsWorker(15, 97, 85, 64, 67, 10, 69, 40, 15, 35)); 
 
-function makeWork (arrOfArr, func) {
 
+
+function makeWork(arrOfArr, func) {
+
+	const resultFunc = [];
+
+	for (let i = 0; i < arrOfArr.length; i++) {
+		resultFunc.push(func(...arrOfArr[i]));
+	}
+
+	let maxWorkerResult = Math.max(...resultFunc);
+
+
+
+	if (resultFunc > maxWorkerResult) {
+		maxWorkerResult = Math.max(resultFunc);
+	}
+
+	return maxWorkerResult;
 }
+	
+  
+
+
+const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
+console.log(makeWork(arr, summElementsWorker)); // максимум из 61, 206, 328, 284 => 328
+console.log(makeWork(arr, differenceMaxMinWorker)); // максимум из 10, 86, 44, 66 => 86
+console.log(makeWork(arr, differenceEvenOddWorker)); // максимум из 39, -6, -184, 92 => 92
+console.log(makeWork(arr, averageEvenElementsWorker)); // максимум из 12.5, 33.333, 72, 62.666 => 72
