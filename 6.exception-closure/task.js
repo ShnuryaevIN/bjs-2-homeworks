@@ -15,9 +15,6 @@ function validateCount(item) {
 }
 
 
-
-
-
 class Triangle {
     constructor(sideA, sideB, sideC) {
         this.sideA = sideA;
@@ -34,20 +31,21 @@ class Triangle {
     }
 
     get area() {
-        let semiPerimeter = (this.sideA + this.sideB + this.sideC) / 2;
+        let semiPerimeter = this.perimeter / 2;
         let S = Math.sqrt(semiPerimeter * (semiPerimeter - this.sideA) * (semiPerimeter - this.sideB) * (semiPerimeter - this.sideC));
         return +S.toFixed(3);
     }
 }
 
-
-function getTriangle(a, b, c) {
-    try {
-        return new Triangle(a, b, c);
-    } catch (err) {
-        return {
-            area: 'Ошибка! Треугольник не существует',
-            perimeter: 'Ошибка! Треугольник не существует',
-        };
-    }
-}
+function getTriangle (sideA, sideB, sideC){
+     try{
+         return new Triangle(sideA, sideB, sideC);
+     } catch (err){
+         return {
+             get area(){
+                return "Ошибка! Треугольник не существует"},
+             get perimeter(){
+                return "Ошибка! Треугольник не существует"},
+         }
+     }
+ }
